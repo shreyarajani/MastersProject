@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <p></p>
+    <ul class="breadcrumb">
+        <li><a href="#">Home</a> <span class="divider">/</span></li>
+        <li class="active">Season Selection</li>
+    </ul>
+    </p>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span3">
+                <div class="well sidebar-nav">
+                    <ul class="nav nav-list">
+                        <li class="active">Season Selection</li>
+                        <li><a href="{% url 'ThruLine.views.results' %}">Search Criteria</a></li>
+                        <li><a href="{% url 'ThruLine.views.requests' %}">Requests</a></li>
+
+                    </ul>
+                </div>
+                <!--/.well -->
+            </div>
+            <!--/span-->
+            <div class="span9">
+                <div class="hero-unit">
+
+
+                 <form class="form-horizontal" method="get" action="/results/">
+
+                        <legend>Seasons Selection:</legend>
+                            {% for season in seasons %}
+                                <label class="checkbox inline">
+                                    <input type="checkbox" class="btn btn-default" name="seasons" value="{{ season.id }}" checked>
+                                    {{ season.name }}
+                                </label>
+                            {% endfor %}
+                          <br>
+                        <button type="submit" class="btn">Submit</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <!--/span-->
+    </div><!--/row-->
+
+    <hr>
+
+    <footer>
+        <p align="center">&copy; ThruLine 2015</p>
+    </footer>
+
+    </div><!--/.fluid-container-->
+
+{% endblock %}

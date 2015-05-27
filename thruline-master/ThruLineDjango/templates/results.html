@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <p></p>
+
+    <ul class="breadcrumb">
+        <li><a href="#">Home</a> <span class="divider">/</span></li>
+        <li><a href="{% url 'ThruLine.views.criteria' %}">Season Selection</a> <span class="divider">/</span></li>
+        <li class="active">Search Criteria</li>
+    </ul>
+    </p>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span3">
+                <div class="well sidebar-nav">
+                    <ul class="nav nav-list">
+                        <li><a href="{% url 'ThruLine.views.criteria' %}">Season Selection</a></li>
+                        <li class="active">Search Criteria</li>
+                        <li><a href="{% url 'ThruLine.views.requests' %}">Requests</a></li>
+
+                    </ul>
+                </div>
+                <!--/.well -->
+            </div>
+            <!--/span-->
+            <div class="span9">
+                <div class="hero-unit">
+                    <form class="form-horizontal" method="get" action="/intermediate_function/">
+                    <legend>Keyword:</legend>
+                            <input type="text" name="keyword" id="keyword" placeholder="Character/Word/Phrase..." required/>
+                            <br><br>
+
+                        <legend>Episode:</legend>
+
+                            {% for episode in episodes.items %}
+
+                                <label class="checkbox inline">
+                                S-{{ episode.0 }}<br/>
+                                    {% for e in episode.1 %}
+                                        <input type="checkbox" class="btn btn-default" name="episodes" value="{{ e.id }}" checked> {{ e.name }}
+                                        <br/>
+                                    {% endfor %}
+                                <br/>
+                                </label>
+                            {% endfor %}
+                          <br>
+                        <button type="submit" class="btn">Submit</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/span-->
+    </div><!--/row-->
+
+    <hr>
+
+
+    <footer>
+        <p align="center">&copy; ThruLine 2015</p>
+    </footer>
+
+    </div><!--/.fluid-container-->
+
+{% endblock %}

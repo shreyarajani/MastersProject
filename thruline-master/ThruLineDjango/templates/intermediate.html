@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <p></p>
+    <ul class="breadcrumb">
+        <li><a href="#">Home</a> <span class="divider">/</span></li>
+        <li><a href="{% url 'ThruLine.views.criteria' %}">Season Selection</a> <span class="divider">/</span></li>
+        <li><a href="{% url 'ThruLine.views.results' %}">Search Criteria</a> <span class="divider">/</span></li>
+        <li><a href="{% url 'ThruLine.views.requests' %}">Requests</a> <span class="divider">/</span></li>
+        <li class="active">Request #{{ request.id }}</li>
+    </ul>
+    </p>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span3">
+                <div class="well sidebar-nav">
+                    <ul class="nav nav-list">
+                        <li><a href="{% url 'ThruLine.views.criteria' %}">Season Selection</a></li>
+                        <li><a href="{% url 'ThruLine.views.results' %}">Search Criteria</a></li>
+                        <li><a href="{% url 'ThruLine.views.requests' %}">Requests</a></li>
+                    </ul>
+                </div>
+                <!--/.well -->
+            </div>
+            <!--/span-->
+            <div class="span9">
+                <div class="hero-unit">
+                     <form class="form-horizontal" method="get" action="/results/results_user/">
+                            <input type="hidden"  name="data" id="data" value="{{ data }}" readonly/>
+
+                        <legend>Dialogues:</legend>
+                        <ul>
+
+                            {% for episode in results %}
+                                <li>
+                                    {{ episode.episode_name }}: {{ episode.start_time }} to {{ episode.end_time }} - {{ episode.episode_url }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                          <br>
+                        <button type="submit" class="btn">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--/span-->
+    </div><!--/row-->
+
+    <hr>
+
+    <footer align="center">
+        <p>&copy; ThruLine 2015</p>
+    </footer>
+
+    </div><!--/.fluid-container-->
+
+{% endblock %}
